@@ -22,12 +22,16 @@ public class Order {
     }
 
     // TODO Step 3a: Declare a private int field called `orderId`
+    private int orderId;
 
     // TODO Step 3b: Declare a private String field called `customerName`
+    private String customerName;
 
     // TODO Step 3c: Declare a private Recipe field called `recipe`
+    private Recipe recipe;
 
     // TODO Step 3d: Declare a private OrderStatus field called `status`
+    private OrderStatus status;
 
     /**
      * Constructs an Order with the given ID, customer name, and recipe.
@@ -42,6 +46,10 @@ public class Order {
         // TODO Step 3f: Assign customerName → this.customerName
         // TODO Step 3g: Assign recipe → this.recipe
         // TODO Step 3h: Set this.status to OrderStatus.PENDING
+        this.orderId = orderId;
+        this.customerName = customerName;
+        this.recipe = recipe;
+        this.status = OrderStatus.PENDING;
     }
 
     /**
@@ -51,7 +59,7 @@ public class Order {
      */
     public int orderId() {
         // TODO Step 3i: Return orderId
-        return 0;
+        return orderId;
     }
 
     /**
@@ -61,7 +69,7 @@ public class Order {
      */
     public String customer() {
         // TODO Step 3j: Return customerName
-        return null;
+        return customerName;
     }
 
     /**
@@ -71,7 +79,7 @@ public class Order {
      */
     public Recipe recipe() {
         // TODO Step 3k: Return recipe
-        return null;
+        return recipe;
     }
 
     /**
@@ -81,7 +89,7 @@ public class Order {
      */
     public OrderStatus status() {
         // TODO Step 3l: Return status
-        return null;
+        return status;
     }
 
     /**
@@ -91,6 +99,7 @@ public class Order {
      */
     public void updateStatus(OrderStatus newStatus) {
         // TODO Step 3m: Assign newStatus → this.status
+        this.status = newStatus;
     }
 
     /**
@@ -105,6 +114,6 @@ public class Order {
     public String toString() {
         // TODO Step 3n: Return a formatted string including orderId, customerName, recipe.name(), and status
         //               e.g. "Order #1 | Customer: Alice | Recipe: Latte | Status: PENDING"
-        return null;
+        return String.format("Order #%d | Customer: %s | Recipe: %s | Status: %s", orderId, customerName, recipe.toString(), status.toString());
     }
 }
