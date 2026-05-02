@@ -23,12 +23,16 @@ import java.util.Map;
 public abstract class CoffeeMachine {
 
     // TODO Step 4a: Declare a private String field called `machineName`
+    private String machineName;
 
     // TODO Step 4b: Declare a private Map<String, Recipe> field called `recipes`
+    private Map<String, Recipe> recipes;
 
     // TODO Step 4c: Declare a private List<Order> field called `orderQueue`
+    private List<Order> orderQueue;
 
     // TODO Step 4d: Declare a private int field called `orderCounter` (starts at 0)
+    private int orderCount;
 
     /**
      * Constructs a CoffeeMachine with the given display name.
@@ -42,6 +46,9 @@ public abstract class CoffeeMachine {
         // TODO Step 4f: Initialise this.recipes as new HashMap<>()
         // TODO Step 4g: Initialise this.orderQueue as new ArrayList<>()
         // (orderCounter is 0 by default in Java — no explicit initialisation needed)
+        this.machineName = machineName;
+        this.recipes = new HashMap<>();
+        this.orderQueue = new ArrayList<>();
     }
 
     // -------------------------------------------------------------------------
@@ -56,6 +63,7 @@ public abstract class CoffeeMachine {
      */
     public void addRecipe(Recipe recipe) {
         // TODO Step 4h: Put recipe into the recipes map using recipe.name() as the key
+        recipes.put(recipe.name(), recipe);
     }
 
     /**
@@ -66,7 +74,7 @@ public abstract class CoffeeMachine {
      */
     public Recipe getRecipe(String recipeName) {
         // TODO Step 4i: Return the recipe from the map (returns null automatically if not found)
-        return null;
+        return recipes.get(recipeName);
     }
 
     /**
@@ -76,7 +84,7 @@ public abstract class CoffeeMachine {
      */
     public Map<String, Recipe> getAllRecipes() {
         // TODO Step 4j: Return Collections.unmodifiableMap(recipes)
-        return null;
+        return Collections.unmodifiableMap(recipes);
     }
 
     /**
@@ -95,7 +103,10 @@ public abstract class CoffeeMachine {
         // TODO Step 4l: Create a new Order with id = ++orderCounter, customerName, and the recipe
         // TODO Step 4m: Add the order to orderQueue
         // TODO Step 4n: Return the order
-        return null;
+        if (recipes.get(recipeName) == null) throw new IllegalArgumentException("Recipe not found.");
+        Order newOrder = new Order(++orderCount, customerName, recipes.get(recipeName));
+        orderQueue.add(newOrder);
+        return newOrder;
     }
 
     /**
@@ -117,7 +128,19 @@ public abstract class CoffeeMachine {
         // TODO Step 4r: Call brew(order)
         // TODO Step 4s: Set status → COMPLETED
         // TODO Step 4t: Return the order
-        return null;
+        Order firstOrderPending = null;
+
+        for (Order order : orderQueue) {
+            if (order.status() == Order.OrderStatus.PENDING) {
+                firstOrderPending = order;
+                break;
+            }
+        }
+        firstOrderPending.updateStatus(Order.OrderStatus.IN_PROGRESS);
+        brew(firstOrderPending);
+        firstOrderPending.updateStatus(Order.OrderStatus.COMPLETED);
+
+        return firstOrderPending;
     }
 
     /**
@@ -127,7 +150,7 @@ public abstract class CoffeeMachine {
      */
     public List<Order> orderQueue() {
         // TODO Step 4u: Return Collections.unmodifiableList(orderQueue)
-        return null;
+        return Collections.unmodifiableList(orderQueue);
     }
 
     /**
@@ -137,7 +160,7 @@ public abstract class CoffeeMachine {
      */
     public String machineName() {
         // TODO Step 4v: Return machineName
-        return null;
+        return machineName;
     }
 
     // -------------------------------------------------------------------------
