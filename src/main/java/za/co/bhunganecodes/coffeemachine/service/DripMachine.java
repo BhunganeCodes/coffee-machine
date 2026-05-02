@@ -38,6 +38,6 @@ public class DripMachine extends CoffeeMachine {
         //               Hint: machineName() is inherited from CoffeeMachine
         //                     order.recipe().name() gives the recipe name
         //                     order.customer() gives the customer name
-        System.out.printf("%s brewing %s for %s using high-pressure espresso extraction.", machineName(), order.recipe().name(), order.customer());
+        System.out.printf("%s brewing %s for %s using slow drip-filter method.", machineName(), order.recipe().name(), order.customer());
     }
 }

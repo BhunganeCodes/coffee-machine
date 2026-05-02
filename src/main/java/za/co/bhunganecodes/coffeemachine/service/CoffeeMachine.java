@@ -1,6 +1,7 @@
 package za.co.bhunganecodes.coffeemachine.service;
 
 import za.co.bhunganecodes.coffeemachine.model.Order;
+import za.co.bhunganecodes.coffeemachine.model.Order.OrderStatus;
 import za.co.bhunganecodes.coffeemachine.model.Recipe;
 
 import java.util.ArrayList;
@@ -128,19 +129,16 @@ public abstract class CoffeeMachine {
         // TODO Step 4r: Call brew(order)
         // TODO Step 4s: Set status → COMPLETED
         // TODO Step 4t: Return the order
-        Order firstOrderPending = null;
 
         for (Order order : orderQueue) {
             if (order.status() == Order.OrderStatus.PENDING) {
-                firstOrderPending = order;
-                break;
+                order.updateStatus(OrderStatus.IN_PROGRESS);
+                brew(order);
+                order.updateStatus(OrderStatus.COMPLETED);
+                return order;
             }
         }
-        firstOrderPending.updateStatus(Order.OrderStatus.IN_PROGRESS);
-        brew(firstOrderPending);
-        firstOrderPending.updateStatus(Order.OrderStatus.COMPLETED);
-
-        return firstOrderPending;
+        return null;
     }
 
     /**
