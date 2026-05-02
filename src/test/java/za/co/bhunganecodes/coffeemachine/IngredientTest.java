@@ -132,7 +132,7 @@ class IngredientTest {
 
         @Test
         @DisplayName("Works for Espresso ingredient")
-        void toString_espresso() {
+        public void toString_espresso() {
             assertEquals("Espresso: 30.0ml", espresso.toString());
         }
     }

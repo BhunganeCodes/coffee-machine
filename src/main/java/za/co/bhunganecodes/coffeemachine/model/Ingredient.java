@@ -12,8 +12,10 @@ package za.co.bhunganecodes.coffeemachine.model;
 public class Ingredient {
 
     // TODO Step 1a: Declare a private String field called `name`
+    private String name;
 
     // TODO Step 1b: Declare a private double field called `quantity`
+    private double quantity;
 
     /**
      * Constructs an Ingredient with the given name and quantity.
@@ -24,6 +26,8 @@ public class Ingredient {
     public Ingredient(String ingredientName, double ingredientQuantity) {
         // TODO Step 1c: Assign ingredientName  → name
         // TODO Step 1d: Assign ingredientQuantity → quantity
+        this.name = ingredientName;
+        this.quantity = ingredientQuantity;
     }
 
     /**
@@ -33,7 +37,7 @@ public class Ingredient {
      */
     public String name() {
         // TODO Step 1e: Return name
-        return null;
+        return name;
     }
 
     /**
@@ -43,7 +47,7 @@ public class Ingredient {
      */
     public double quantity() {
         // TODO Step 1f: Return quantity
-        return 0;
+        return quantity;
     }
 
     /**
@@ -55,6 +59,8 @@ public class Ingredient {
     public void updateQuantity(double newQuantity) {
         // TODO Step 1g: If newQuantity < 0, throw new IllegalArgumentException with a meaningful message
         // TODO Step 1h: Otherwise, assign newQuantity → quantity
+        if (newQuantity < 0) throw new IllegalArgumentException("The new quantity cannot be less than 0.");
+        this.quantity = newQuantity;
     }
 
     /**
@@ -68,6 +74,6 @@ public class Ingredient {
     @Override
     public String toString() {
         // TODO Step 1i: Return "<name>: <quantity>ml"  e.g. "Milk: 150.0ml"
-        return null;
+        return String.format("%s: %.1fml", name, quantity);
     }
 }
