@@ -1,0 +1,6 @@
+za\co\bhunganecodes\coffeemachine\model\Ingredient.class
+za\co\bhunganecodes\coffeemachine\model\Recipe.class
+za\co\bhunganecodes\coffeemachine\model\Order.class
+za\co\bhunganecodes\coffeemachine\service\CoffeeMachine.class
+za\co\bhunganecodes\coffeemachine\model\Order$OrderStatus.class
+za\co\bhunganecodes\coffeemachine\Main.class

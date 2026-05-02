@@ -17,8 +17,10 @@ import java.util.List;
 public class Recipe {
 
     // TODO Step 2a: Declare a private String field called `name`
+    private String name;
 
     // TODO Step 2b: Declare a private List<Ingredient> field called `ingredients`
+    private List<Ingredient> ingredients;
 
     /**
      * Constructs a Recipe with the given name and initial ingredient list.
@@ -34,6 +36,8 @@ public class Recipe {
         // TODO Step 2c: Assign name → this.name
         // TODO Step 2d: Store a NEW ArrayList copy of ingredientList into this.ingredients
         //               Hint: new ArrayList<>(ingredientList)
+        this.name = name;
+        this.ingredients = new ArrayList<>(ingredientList);
     }
 
     /**
@@ -43,7 +47,7 @@ public class Recipe {
      */
     public String name() {
         // TODO Step 2e: Return name
-        return null;
+        return name;
     }
 
     /**
@@ -56,7 +60,7 @@ public class Recipe {
      */
     public List<Ingredient> ingredients() {
         // TODO Step 2f: Return new ArrayList<>(ingredients)
-        return null;
+        return new ArrayList<>(ingredients);
     }
 
     /**
@@ -66,6 +70,7 @@ public class Recipe {
      */
     public void addIngredient(Ingredient ingredient) {
         // TODO Step 2g: Add ingredient to the internal ingredients list
+        ingredients.add(ingredient);
     }
 
     /**
@@ -86,6 +91,12 @@ public class Recipe {
     public String toString() {
         // TODO Step 2h: Build and return a string: name + newline + each ingredient.toString() on its own line
         //               Hint: Use a StringBuilder or String.join / stream
-        return null;
+        String result = name + "\n";
+
+        for (Ingredient ingredient : ingredients) {
+            result = result + ingredient.toString() + "\n";
+        }
+
+        return result;
     }
 }
