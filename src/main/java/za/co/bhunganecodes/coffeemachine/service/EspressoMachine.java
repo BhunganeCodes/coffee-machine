@@ -20,6 +20,7 @@ public class EspressoMachine extends CoffeeMachine {
      */
     public EspressoMachine(String machineName) {
         // TODO Step 5a: Call super(machineName) to initialise the base class
+        super(machineName);
     }
 
     /**
@@ -37,5 +38,6 @@ public class EspressoMachine extends CoffeeMachine {
         //               Hint: machineName() is inherited from CoffeeMachine
         //                     order.recipe().name() gives the recipe name
         //                     order.customer() gives the customer name
+        System.out.printf("%s brewing %s for %s using high-pressure espresso extraction.", machineName(), order.recipe().name(), order.customer());
     }
 }
